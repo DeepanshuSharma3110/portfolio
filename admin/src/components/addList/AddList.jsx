@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import uploadIcon from "../../assets/upload_area.png";
 const AddList = () => {
+  const [input, setInput] = useState({})
+  console.log(input);
+  
   return (
-    <div className="p-5 w-full ">
+    <div className="p-5 ">
       {/* headding */}
       <div className="mb-5">
         <p>Upload Image</p>
@@ -35,9 +38,9 @@ const AddList = () => {
 
       {/*filter section*/}
 
-      <div className="flex gap-5 mb-3">
+      <div className=" md:flex gap-5 mb-3 ">
         {/* first filter */}
-        <div>
+        <div className="mb-3 sm:mb-0">
           <p>Product category</p>
           <select className="selectBox-primary">
             <option>Men</option>
@@ -46,7 +49,7 @@ const AddList = () => {
           </select>
         </div>
 
-        <div>
+        <div className="mb-3 sm:mb-0">
           <p>Sub category</p>
           <select className="selectBox-primary">
             <option>Topwear</option>
@@ -55,9 +58,9 @@ const AddList = () => {
           </select>
         </div>
 
-        <div>
+        <div className="mb-3 sm:mb-0">
           <p>Product Price</p>
-          <input type="number" placeholder="25" className="p-1" />
+          <input type="number" placeholder="25" className="p-1 outline-none focus:border-pink-400 border" />
         </div>
       </div>
 

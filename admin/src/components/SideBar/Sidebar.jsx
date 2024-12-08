@@ -29,25 +29,25 @@ const Sidebar = ({setCurrentMenu}) => {
             {/* first item */}
             
             <li className='mb-4'>
-                <div className={`border-y-2 rounded border-l-2 py-1 pl-3 flex gap-2 justify-center items-center ml-3 pr-14 transition duration-500 ${selectedItem === 'AddItem' ? 'bg-pink-300' : 'bg-white'}`} onClick={()=>handleDisplay("AddItem")}>
-                    <img src={addIcon} className='w-[20px]'/>
-                    <p className='hidden sm:block text-sm font-semibold'>Add Item</p>
+                <div className={`sidebar-menu-mainDiv ${selectedItem === 'AddItem' ? 'bg-pink-300' : 'bg-white'}`} onClick={()=>handleDisplay("AddItem")}>
+                    <img src={addIcon} className='md:w-[20px] w-[50px] m-auto md:m-0'/>
+                    <p className='hidden md:block text-sm font-semibold'>Add Item</p>
                 </div>
             </li>
 
 
             <li className='mb-4'>
-                <div className={`border-y-2 rounded border-l-2 py-1 pl-3 flex gap-2 justify-center items-center ml-3 pr-14 active:bg-pink-400  transition duration-500 ${selectedItem === 'ListItem' ? 'bg-pink-300' : 'bg-white'}`} onClick={()=>handleDisplay("ListItem")}>
-                    <img  className='w-[20px]' src={orderIcon}/>
-                    <p className='hidden sm:block text-sm font-semibold'>List Item</p>
+                <div className={`sidebar-menu-mainDiv ${selectedItem === 'ListItem' ? 'bg-pink-300' : 'bg-white'}`} onClick={()=>handleDisplay("ListItem")}>
+                    <img  className='md:w-[20px] w-[50px] m-auto  md:m-0' src={orderIcon}/>
+                    <p className='hidden md:block text-sm font-semibold'>List Item</p>
                 </div>
             </li>
 
 
             <li>
-                <div className={`border-y-2 rounded border-l-2 py-1 pl-3 flex gap-2 justify-center items-center ml-3 pr-14 active:bg-pink-400 transition duration-500 ${selectedItem === 'Order' ? 'bg-pink-300' : 'bg-white'}`} onClick={()=>handleDisplay("Order")}>
-                    <img className='w-[20px]' src={orderIcon}/>
-                    <p className='hidden sm:block text-sm font-semibold'>Order</p>
+                <div className={`sidebar-menu-mainDiv ${selectedItem === 'Order' ? 'bg-pink-300' : 'bg-white'}`} onClick={()=>handleDisplay("Order")}>
+                    <img className='md:w-[20px] w-[50px] m-auto md:m-0' src={orderIcon}/>
+                    <p className='hidden md:block text-sm font-semibold'>Order</p>
                 </div>
             </li>
 
