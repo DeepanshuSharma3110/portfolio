@@ -12,7 +12,7 @@ const [currentMenu, setCurrentMenu] = useState({showAddItem:true, showListItem: 
     <>
     {/* navbar */}
     
-    <div className='flex gap-3'>
+    <div className='flex gap-3 bg-gray-100'>
     {/* sidemenu */}
         <div>
             <Sidebar setCurrentMenu={setCurrentMenu} />
