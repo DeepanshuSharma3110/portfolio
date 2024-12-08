@@ -1,8 +1,15 @@
 import './App.css'
+import Home from './pages/Home/Home';
+import Login from './pages/Login/Login'
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
 export default function App() {
   return (
-    <h1 className="text-3xl font-bold underline">
-    admin
-    </h1>
+    <BrowserRouter>
+    <Routes>
+      <Route path='/' element={<Login />} />
+      <Route path='/home' element={<Home />} />
+    </Routes>
+    </BrowserRouter>
   )
 }
