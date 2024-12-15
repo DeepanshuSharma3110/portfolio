@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import uploadIcon from "../../assets/upload_area.png";
+import axios from "axios";
+import { AddItem } from "../../adminUrl";
+
 const AddList = () => {
   const [input, setInput] = useState({
     images: [],
@@ -12,6 +15,22 @@ const AddList = () => {
     addToBestSeller: false,
   });
   console.log(input);
+
+const sendToServer =async (formData)=>{
+  try {
+    const response = await axios.post(AddItem, formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+    console.log(response);
+    
+    console.log("Response from server:", response.data);
+  } catch (err) {
+    console.error("Error sending data to server:", err);
+  }
+}
+
 
   const handleImageUpload = (e, index) => {
     const file = e.target.files[0];
@@ -37,9 +56,20 @@ const AddList = () => {
       alert("Please fill in all required fields!");
 
       return;
-    } else {
-      alert("saving ");
-    }
+    } 
+    const formData = new FormData();
+    formData.append("name",input.name)
+    formData.append("description", input.description);
+    formData.append("price", input.price);
+    input.images.forEach((image, index) => {
+      if (image) formData.append(`image${index}`, image);
+    });
+    input.size.forEach((size)=>formData.append("size[]",size))
+    formData.append("productCategory", input.productCategory);
+    formData.append("subCategory", input.subCategory);
+
+    sendToServer(formData);
+    
   };
 
   const handleChange = (e) => {
