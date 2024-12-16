@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import uploadIcon from "../../assets/upload_area.png";
 import axios from "axios";
 import { AddItem } from "../../adminUrl";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const AddList = () => {
   const [input, setInput] = useState({
@@ -14,23 +16,39 @@ const AddList = () => {
     size: [],
     addToBestSeller: false,
   });
-  console.log(input);
+  const sendToServer = async (formData) => {
+    try {
+      const response = await axios.post(AddItem, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
 
-const sendToServer =async (formData)=>{
-  try {
-    const response = await axios.post(AddItem, formData, {
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
-    });
-    console.log(response);
-    
-    console.log("Response from server:", response.data);
-  } catch (err) {
-    console.error("Error sending data to server:", err);
-  }
-}
+      console.log(response);
 
+      if (response.data.status === "sucessfull") {
+        
+        toast.success("Item added successfully!");
+        
+        setInput({
+          images: [],
+          name: "",
+          description: "",
+          productCategory: "",
+          subCategory: "",
+          price: "",
+          size: [],
+          addToBestSeller: false,
+        });
+
+
+      }else{
+        toast.error("Failed to add item. Please try again.");
+      }
+    } catch (err) {
+      console.error("Error sending data to server:", err);
+    }
+  };
 
   const handleImageUpload = (e, index) => {
     const file = e.target.files[0];
@@ -56,20 +74,18 @@ const sendToServer =async (formData)=>{
       alert("Please fill in all required fields!");
 
       return;
-    } 
+    }
     const formData = new FormData();
-    formData.append("name",input.name)
+    formData.append("name", input.name);
     formData.append("description", input.description);
     formData.append("price", input.price);
     input.images.forEach((image, index) => {
       if (image) formData.append(`image${index}`, image);
     });
-    input.size.forEach((size)=>formData.append("size[]",size))
+    input.size.forEach((size) => formData.append("size[]", size));
     formData.append("productCategory", input.productCategory);
     formData.append("subCategory", input.subCategory);
-
     sendToServer(formData);
-    
   };
 
   const handleChange = (e) => {
@@ -82,6 +98,7 @@ const sendToServer =async (formData)=>{
 
   return (
     <div className="p-5 ">
+      
       {/* headding */}
       <div className="mb-5">
         <p>Upload Image</p>
@@ -96,6 +113,7 @@ const sendToServer =async (formData)=>{
               name={`image${index}`}
               className="hidden"
               onChange={(e) => handleImageUpload(e, index)}
+
             />
             <img
               src={
@@ -118,6 +136,7 @@ const sendToServer =async (formData)=>{
           placeholder="Type Here"
           className="input-primary w-full"
           onChange={handleChange}
+          value={input.name}
         />
       </div>
 
@@ -129,6 +148,7 @@ const sendToServer =async (formData)=>{
           name="description"
           placeholder="Write content here w-full"
           onChange={handleChange}
+          value={input.description}
         />
       </div>
 
@@ -178,6 +198,7 @@ const sendToServer =async (formData)=>{
             placeholder="25"
             onChange={handleChange}
             className="p-1 outline-none focus:border-pink-400 border"
+            value={input.price}
           />
         </div>
       </div>
@@ -218,6 +239,7 @@ const sendToServer =async (formData)=>{
           ADD
         </button>
       </div>
+      <ToastContainer />
     </div>
   );
 };
