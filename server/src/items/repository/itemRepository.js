@@ -11,3 +11,15 @@ export const createNewProduct =async (name,description, price,size, productCateg
         throw err;
     }
 }
+
+export const getAll =async ()=>{
+    try{
+        const result = await ItemModel.find();
+        if(!result){
+            return 
+        }
+        return result; 
+    }catch(err){
+        throw err;
+    }
+}

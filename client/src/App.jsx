@@ -6,6 +6,7 @@ import Footer from "./components/footer/Footer";
 import Collection from "./pages/collection/Collection";
 import About from "./pages/about/About";
 import Contact from "./pages/contact/Contact";
+import Product from "./pages/product/Product";
 export default function App() {
   return (
     <BrowserRouter>
@@ -15,6 +16,7 @@ export default function App() {
         <Route path="/collection" element={<Collection />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path={`/product/:id`} element={<Product />} /> 
       </Routes>
       <Footer />
     </BrowserRouter>

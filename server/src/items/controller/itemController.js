@@ -1,4 +1,6 @@
 import { createNewProduct } from "../repository/itemRepository.js";
+import { getAll } from "../repository/itemRepository.js";
+
 export const addItem = async(req,res,next)=>{
     try{
 
@@ -22,3 +24,17 @@ export const addItem = async(req,res,next)=>{
     }
 }
 
+
+
+export const getAllItems = async (req,res,next)=>{
+try{
+    const result = await getAll();
+    if(!result){
+        return res.status(200).json({message:'No Item Found'})
+    }
+    console.log(result);
+    return res.status(200).json({status:'sucessfull',message:"item fetch Sucessfully", data:result })
+}catch(err){
+    next(err);
+}
+}

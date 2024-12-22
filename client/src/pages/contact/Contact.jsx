@@ -42,7 +42,6 @@ const Contact = () => {
         </p>
 
 <button className='btn-primary'>Explore Jobs</button>
-
       </div>
     </div>
   </div>
