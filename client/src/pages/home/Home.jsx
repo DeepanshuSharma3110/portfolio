@@ -19,7 +19,9 @@ const Home = () => {
 
   // Fetch data on component mount
   useEffect(() => {
-    dispatch(fetchData());
+    if(data.length===0){
+      dispatch(fetchData());
+    }
   }, [dispatch]);
 
   return (
@@ -43,7 +45,9 @@ const Home = () => {
         <div className="flex gap-5 flex-wrap justify-center">
           {data.map((item, index) => (
             <Link to={`/product/${item._id}`}>
+
             <Card data={item} key={index} />
+            
             </Link>
           
           ))}

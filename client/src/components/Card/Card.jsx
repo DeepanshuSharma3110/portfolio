@@ -1,6 +1,7 @@
 import React from 'react';
 
 const Card = ({ data }) => {
+
   const imageBuffer = data?.images?.[0]?.data?.data;
   const contentType = data?.images?.[0]?.contentType || 'image/jpeg';
   
@@ -13,8 +14,12 @@ const Card = ({ data }) => {
       )}`
     : 'fallback-image-url';
 
+    const scrollToTop = () => {
+      window.scrollTo({ top: 0, behavior: "smooth" }); 
+    };
+
   return (
-    <div className="mb-2">
+    <div className="mb-2" onClick={scrollToTop}>
       {/* Top Section */}
       <div className="overflow-hidden">
         {/* Zoom the image 5-10% on hover */}
@@ -23,6 +28,7 @@ const Card = ({ data }) => {
           alt={data?.name || 'Product Image'}
           className="transform transition duration-300 hover:scale-110 w-96"
         />
+        
       </div>
       {/* Bottom Section */}
       <p className="text-xl">{data?.name || 'Unknown Product'}</p>

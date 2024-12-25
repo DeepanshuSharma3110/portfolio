@@ -14,10 +14,6 @@ const Collection = () => {
   const isError = useSelector((store) => store.item.isError);
   const [sortOrder, setSortOrder] = useState("ascending");
 
-
-
-
-
   useEffect(() => {
     if (data.length === 0) {
       dispatch(fetchData());
